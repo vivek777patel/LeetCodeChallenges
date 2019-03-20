@@ -1,0 +1,564 @@
+package com.leetcode.challenge;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class NotLeetCode {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	// Not finished
+	public static int rLCount(String S) {
+		int count = 0;
+		int tmpCount = 0;
+		for (int i = 0; i < S.length();) {
+			char c = S.charAt(i);
+			if (tmpCount == 0 && i + 1 < S.length()
+					&& (c == 'R' && S.charAt(i + 1) == 'L' || c == 'L' && S.charAt(i + 1) == 'R')) {
+				count++;
+				// prev = c;
+				i = i + 2;
+				continue;
+			}
+			if (tmpCount == 0 && c == 'R') {
+				while (c == 'R' && i + 1 < S.length()) {
+					i++;
+					tmpCount++;
+					c = S.charAt(i);
+				}
+				if (tmpCount > 0) {
+					while (c == 'L' && i < S.length() && tmpCount != 0) {
+						c = S.charAt(i);
+						i++;
+						tmpCount--;
+					}
+					if (tmpCount == 0)
+						count++;
+				}
+			}
+			if (tmpCount == 0 && c == 'L') {
+				while (c == 'L' && i + 1 < S.length()) {
+					i++;
+					tmpCount++;
+					c = S.charAt(i);
+				}
+				if (tmpCount > 0) {
+					while (c == 'R' && i + 1 < S.length() && tmpCount != 0) {
+						i++;
+						tmpCount--;
+						c = S.charAt(i);
+					}
+					if (tmpCount == 0)
+						count++;
+				}
+			}
+			if (tmpCount > 0) {
+				while (c == 'R' && i < S.length() && tmpCount != 0) {
+					c = S.charAt(i);
+					i++;
+					tmpCount--;
+				}
+				while (c == 'L' && i + 1 < S.length() && tmpCount != 0) {
+					i++;
+					tmpCount--;
+					c = S.charAt(i);
+				}
+
+				if (tmpCount == 0)
+					count++;
+			}
+		}
+		return count;
+	}
+
+	public static List<String> findSchedules1(int workHours, int dayHours, String pattern) {
+		// Write your code here
+		List<String> result = new ArrayList<>();
+		int finishedHours = 0;
+
+		List<Integer> questionMarkPosition = new ArrayList<>();
+		for (int i = 0; i < pattern.length(); i++) {
+			char c = pattern.charAt(i);
+			if (Character.isDigit(c)) {
+				finishedHours += c - '0';
+			} else {
+				questionMarkPosition.add(i);
+
+			}
+		}
+		int noOfQuestionMarks = questionMarkPosition.size();
+		int remaningHours = workHours - finishedHours;
+		if (dayHours > remaningHours) {
+			for (int i : questionMarkPosition) {
+				result.add(replaceRemainingHours(i, remaningHours, pattern));
+			}
+		} else {
+			int i = 0;
+			String newPattern = pattern;
+			int tempRemaningHours = remaningHours;
+			while (tempRemaningHours != 0) {
+				tempRemaningHours = tempRemaningHours - dayHours;
+				int pos = questionMarkPosition.get(i);
+				i++;
+				noOfQuestionMarks--;
+				if (tempRemaningHours >= 0) {
+					newPattern = replaceRemainingHours(pos, dayHours, newPattern);
+				} else {
+					tempRemaningHours = tempRemaningHours * -1;
+					newPattern = replaceRemainingHours(pos, tempRemaningHours, newPattern);
+					tempRemaningHours = 0;
+					if (noOfQuestionMarks > 0)
+						tempRemaningHours = remaningHours;
+				}
+			}
+			result.add(newPattern);
+		}
+		Collections.sort(result);
+		return result;
+	}
+
+	public static List<String> findSchedules(int workHours, int dayHours, String pattern) {
+		// Write your code here
+		List<String> result = new ArrayList<>();
+		int finishedHours = 0;
+
+		List<Integer> questionMarkPosition = new ArrayList<>();
+		for (int i = 0; i < pattern.length(); i++) {
+			char c = pattern.charAt(i);
+			if (Character.isDigit(c)) {
+				finishedHours += c - '0';
+			} else {
+				questionMarkPosition.add(i);
+
+			}
+		}
+		int noOfQuestionMarks = questionMarkPosition.size();
+		int remaningHours = workHours - finishedHours;
+		if (dayHours > remaningHours) {
+			for (int i : questionMarkPosition) {
+				result.add(replaceRemainingHours(i, remaningHours, pattern));
+			}
+		} else {
+			int i = 0;
+			String newPattern = pattern;
+			int tempRemaningHours = remaningHours;
+			while (tempRemaningHours != 0) {
+				tempRemaningHours = tempRemaningHours - dayHours;
+				int pos = questionMarkPosition.get(i);
+				i++;
+				noOfQuestionMarks--;
+				if (tempRemaningHours >= 0) {
+					newPattern = replaceRemainingHours(pos, dayHours, newPattern);
+				} else {
+					tempRemaningHours = tempRemaningHours * -1;
+					newPattern = replaceRemainingHours(pos, tempRemaningHours, newPattern);
+					tempRemaningHours = 0;
+				}
+				if (noOfQuestionMarks > 0 && tempRemaningHours == 0) {
+					tempRemaningHours = remaningHours;
+					newPattern = pattern;
+				}
+			}
+			result.add(newPattern);
+		}
+		Collections.sort(result);
+		return result;
+	}
+
+	public static String replaceRemainingHours(int position, int hours, String pattern) {
+		String result = "";
+		for (int i = 0; i < pattern.length(); i++) {
+			if (i == position) {
+				result += hours + "";
+			} else if (pattern.charAt(i) == '?') {
+				result += '0';
+			} else {
+				result += pattern.charAt(i) + "";
+			}
+		}
+		return result;
+	}
+
+	public static void findschedule() {
+		String pattern = "??2?500";
+		int remainingHours = 0;
+		for (int i = 0; i < pattern.length(); i++) {
+			char c = pattern.charAt(i);
+			if (Character.isDigit(c)) {
+				remainingHours += c - '0';
+			}
+		}
+		System.out.println(remainingHours);
+	}
+
+	public static List<String> missingWords1(String s, String t) {
+		// Write your code here
+		String[] inputString = s.split(" ");
+
+		if (t.length() == 0)
+			return Arrays.asList(s.split(" "));
+
+		String[] missingWordString = t.split(" ");
+		ArrayList<String> t1 = new ArrayList<>();
+		ArrayList<String> result = new ArrayList<>();
+
+		for (int i = 0, j = 0; i < inputString.length; i++) {
+			if (inputString[i].equalsIgnoreCase(missingWordString[j])) {
+				t1.add(inputString[i]);
+				j++;
+			} else {
+				result.add(inputString[i]);
+			}
+		}
+		return result;
+	}
+
+	public static List<String> missingWords(String s, String t) {
+		// Write your code here
+		String[] inputString = s.split(" ");
+
+		if (t.length() == 0)
+			return Arrays.asList(inputString);
+
+		String[] missingWordString = t.split(" ");
+		List<String> result = new ArrayList<>();
+
+		/*
+		 * I am using hackerrank to improve programming am hackerrank to improve
+		 */
+		for (int i = 0, j = 0; i < inputString.length; i++) {
+			if (j < missingWordString.length && inputString[i].equals(missingWordString[j])) {
+				j++;
+			} else
+				result.add(inputString[i]);
+		}
+
+		return result;
+	}
+
+	public static int solution(int N, String S) {
+		// write your code in Java SE 8
+		int result = 0;
+		// Map<Integer, Vector<Vector<Integer>>> allSeatMap = new HashMap<>();
+		Map<Integer, List<List<Integer>>> allSeatMap = new HashMap<>();
+		String[] reservedSeats = {};
+		if (S != null && S.trim().length() > 0) {
+			reservedSeats = S.split(" ");
+			Arrays.sort(reservedSeats);
+		}
+		for (int rowCount = 1; rowCount <= N; rowCount++) {
+			// Vector<Vector<Integer>> row = new Vector<>(3);
+			List<List<Integer>> row = new ArrayList<>(3);
+			// Vector<Integer> c1 = new Vector<>(3);
+			List<Integer> c1 = new ArrayList<>(3);
+			c1.add(0);
+			c1.add(0);
+			c1.add(0);
+
+			// Vector<Integer> c2 = new Vector<>(4);
+			List<Integer> c2 = new ArrayList<>(3);
+			c2.add(0);
+			c2.add(0);
+			c2.add(0);
+			c2.add(0);
+
+			// Vector<Integer> c3 = new Vector<>(3);
+			List<Integer> c3 = new ArrayList<>(3);
+			c3.add(0);
+			c3.add(0);
+			c3.add(0);
+
+			row.add(c1);
+			row.add(c2);
+			row.add(c3);
+
+			allSeatMap.put(rowCount, row);
+
+			if (S.trim().length() > 0) {
+				for (int j = 0; j < reservedSeats.length; j++) {
+					String seatCode = reservedSeats[j];
+
+					char seatAlpha = Character.toUpperCase(seatCode.charAt(1));
+
+					int currRow = Integer.parseInt(seatCode.charAt(0) + "");
+					if (currRow == rowCount) {
+
+						switch (seatAlpha) {
+						case 'A':
+							allSeatMap.get(rowCount).get(0).set(0, 1);
+							break;
+						case 'B':
+							allSeatMap.get(rowCount).get(0).set(1, 1);
+							break;
+						case 'C':
+							allSeatMap.get(rowCount).get(0).set(2, 1);
+							break;
+						case 'D':
+							allSeatMap.get(rowCount).get(1).set(0, 1);
+							break;
+						case 'E':
+							allSeatMap.get(rowCount).get(1).set(1, 1);
+							break;
+						case 'F':
+							allSeatMap.get(rowCount).get(1).set(2, 1);
+							break;
+						case 'G':
+							allSeatMap.get(rowCount).get(1).set(3, 1);
+							break;
+						case 'H':
+							allSeatMap.get(rowCount).get(2).set(0, 1);
+							break;
+						case 'J':
+							allSeatMap.get(rowCount).get(2).set(1, 1);
+							break;
+						case 'K':
+							allSeatMap.get(rowCount).get(2).set(2, 1);
+							break;
+						}
+					}
+				}
+			}
+
+		}
+
+		for (int rowCount = 1; rowCount <= N; rowCount++) {
+			if (!allSeatMap.get(rowCount).get(0).contains(1)) {
+				result++;
+			}
+
+			if (!allSeatMap.get(rowCount).get(2).contains(1)) {
+				result++;
+			}
+			if (!allSeatMap.get(rowCount).get(1).contains(1)) {
+				result++;
+			} else if (allSeatMap.get(rowCount).get(1).get(1) == 0 && allSeatMap.get(rowCount).get(1).get(2) == 0) {
+				if (allSeatMap.get(rowCount).get(1).get(0) == 0 || allSeatMap.get(rowCount).get(1).get(3) == 0) {
+					result++;
+				}
+			}
+
+		}
+		return result;
+
+	}
+
+	public static int zombieCluster(List<String> zombies) {
+		// Write your code here
+		if (zombies.size() == 0)
+			return 0;
+
+		List<String> zombiesL = new ArrayList<>();
+		for (int i = 1; i < zombies.size(); i++) {
+			zombiesL.add(zombies.get(i));
+		}
+
+		int result = 0;
+		HashMap<Integer, List<Integer>> zombieConnectionMap = new HashMap<>();
+		int noOfZombies = Integer.parseInt(zombies.get(0));
+
+		for (int i = 0; i < noOfZombies; i++) {
+			String zombie = zombiesL.get(i);
+			for (int j = i; j < noOfZombies; j++) {
+				char c = zombie.charAt(j);
+				if (c == '1' && zombiesL.get(j).charAt(i) == '1') {
+					List<Integer> list = new ArrayList<>();
+					if (zombieConnectionMap.containsKey(i))
+						list = zombieConnectionMap.get(i);
+					list.add(j);
+					zombieConnectionMap.put(i, list);
+				}
+			}
+		}
+
+		LinkedList<Integer> myLinkedList = new LinkedList<>();
+		Set<Integer> set = new HashSet<>();
+
+		for (Map.Entry<Integer, List<Integer>> entry : zombieConnectionMap.entrySet()) {
+
+			int key = entry.getKey();
+			List<Integer> val = entry.getValue();
+
+			if (set.contains(key))
+				continue;
+
+			myLinkedList.offer(key);
+
+			while (!myLinkedList.isEmpty()) {
+
+				key = myLinkedList.poll();
+				set.add(key);
+
+				for (int zombieNumber : zombieConnectionMap.get(key)) {
+					if (!set.contains(zombieNumber)) {
+						set.add(zombieNumber);
+						myLinkedList.offer(zombieNumber);
+					}
+				}
+			}
+			result++;
+		}
+		return result;
+
+	}
+
+	public static int zombieCluster1(List<String> zombies) {
+		// Write your code here
+		if (zombies.size() == 0)
+			return 0;
+		List<String> zombiesL = new ArrayList<>();
+		for (int i = 1; i < zombies.size(); i++) {
+			zombiesL.add(zombies.get(i));
+		}
+
+		int result = 0;
+		HashMap<Integer, List<Integer>> zombieConnectionMap = new HashMap<>();
+		int noOfZombies = Integer.parseInt(zombies.get(0));
+
+		for (int i = 0; i < noOfZombies; i++) {
+			String zombie = zombiesL.get(i);
+			for (int j = i; j < noOfZombies; j++) {
+				char c = zombie.charAt(j);
+				if (c == '1' && zombiesL.get(j).charAt(i) == '1') {
+					List<Integer> list = zombieConnectionMap.getOrDefault(i, new ArrayList<>());
+					list.add(j);
+					zombieConnectionMap.put(i, list);
+				}
+			}
+		}
+
+		LinkedList<Integer> myLinkedList = new LinkedList<>();
+		Set<Integer> set = new HashSet<>();
+
+		for (Map.Entry<Integer, List<Integer>> entry : zombieConnectionMap.entrySet()) {
+
+			int key = entry.getKey();
+			List<Integer> val = entry.getValue();
+
+			if (set.contains(key))
+				continue;
+
+			myLinkedList.offer(key);
+
+			while (!myLinkedList.isEmpty()) {
+
+				key = myLinkedList.poll();
+				set.add(key);
+
+				for (int zombieNumber : zombieConnectionMap.getOrDefault(key, new ArrayList<Integer>())) {
+					if (!set.contains(zombieNumber)) {
+						set.add(zombieNumber);
+						myLinkedList.offer(zombieNumber);
+					}
+				}
+			}
+			result++;
+		}
+		return result;
+
+	}
+
+	public static String compute(String s) {
+		TreeSet<String> subStringList = new TreeSet<>();
+		for (int i = 0; i < s.length(); i++) {
+			for (int j = i + 1; j <= s.length(); j++) {
+				subStringList.add(s.substring(i, j));
+			}
+		}
+		return subStringList.last();
+	}
+
+	// Not a problem from leetcode
+	public static void nestedLogic(String actualS, String expectedS) {
+		String[] actual = actualS.split(" ");
+		String[] expected = expectedS.split(" ");
+
+		int d_a = Integer.parseInt(actual[0]);
+		int m_a = Integer.parseInt(actual[1]);
+		int y_a = Integer.parseInt(actual[2]);
+
+		int d_e = Integer.parseInt(expected[0]);
+		int m_e = Integer.parseInt(expected[1]);
+		int y_e = Integer.parseInt(expected[2]);
+
+		if (y_e - y_a < 0)
+			System.out.println(10000);
+		else if (m_e - m_a < 0 && y_a >= y_e)
+			System.out.println(500 * (m_e - m_a) * -1);
+		else if (d_e - d_a < 0 && y_a >= y_e && m_a >= m_e)
+			System.out.println(15 * (d_e - d_a) * -1);
+		else
+			System.out.println(0);
+	}
+
+	public static int differentTeams(String skills) {
+
+		int result = 1;
+
+		if (skills.length() < 5) {
+			return result;
+		}
+		Map<Character, Integer> teamMap = new HashMap<Character, Integer>();
+		teamMap.put('p', 0);
+		teamMap.put('c', 1);
+		teamMap.put('m', 2);
+		teamMap.put('b', 3);
+		teamMap.put('z', 4);
+		int[] resultArr = { 0, 0, 0, 0, 0 };
+		for (int i = 0; i < skills.length(); i++) {
+			char curr = skills.charAt(i);
+			resultArr[teamMap.get(curr)]++;
+			result = Math.min(result, resultArr[teamMap.get(curr)]);
+		}
+
+		Arrays.sort(resultArr);
+
+		return result;
+	}
+
+	public static int deleteProducts(List<Integer> ids, int m) {
+		int result = 0;
+		Map<Integer, Integer> productMap = new HashMap<Integer, Integer>();
+		for (Integer id : ids) {
+			if (productMap.containsKey(id)) {
+				int idVal = productMap.get(id) + 1;
+				productMap.put(id, idVal);
+			} else {
+				productMap.put(id, 1);
+			}
+		}
+		int[] arr = new int[productMap.size()];
+		int i = 0;
+		for (Integer values : productMap.values()) {
+			arr[i] = values;
+			i++;
+		}
+		Arrays.sort(arr);
+		int j = 0;
+		result = arr.length;
+		for (j = 0; j < arr.length; j++) {
+			if (m < arr[j] && j == 0) {
+				result = arr.length;
+				break;
+			}
+			m = m - arr[j];
+			if (m < 0) {
+				break;
+			} else {
+				result--;
+			}
+		}
+		return result;
+	}
+
+}

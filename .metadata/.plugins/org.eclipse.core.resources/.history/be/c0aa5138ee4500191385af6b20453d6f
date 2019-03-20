@@ -1,0 +1,40 @@
+package com.leetcode.challenge;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class NotLeetCode {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static int differentTeams(String skills) {
+
+		int result = 1;
+
+		if (skills.length() < 5) {
+			return result;
+		}
+		Map<Character, Integer> teamMap = new HashMap<Character, Integer>();
+		teamMap.put('p', 0);
+		teamMap.put('c', 1);
+		teamMap.put('m', 2);
+		teamMap.put('b', 3);
+		teamMap.put('z', 4);
+		int[] resultArr = { 0, 0, 0, 0, 0 };
+		for (int i = 0; i < skills.length(); i++) {
+			char curr = skills.charAt(i);
+			resultArr[teamMap.get(curr)]++;
+			result = Math.min(result, resultArr[teamMap.get(curr)]);
+		}
+
+		Arrays.sort(resultArr);
+
+		return result;
+	}
+
+	
+}

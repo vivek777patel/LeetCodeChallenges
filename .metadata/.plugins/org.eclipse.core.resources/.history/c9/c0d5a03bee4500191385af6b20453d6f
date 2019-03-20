@@ -1,0 +1,78 @@
+package com.leetcode.challenge;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class NotLeetCode {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static int differentTeams(String skills) {
+
+		int result = 1;
+
+		if (skills.length() < 5) {
+			return result;
+		}
+		Map<Character, Integer> teamMap = new HashMap<Character, Integer>();
+		teamMap.put('p', 0);
+		teamMap.put('c', 1);
+		teamMap.put('m', 2);
+		teamMap.put('b', 3);
+		teamMap.put('z', 4);
+		int[] resultArr = { 0, 0, 0, 0, 0 };
+		for (int i = 0; i < skills.length(); i++) {
+			char curr = skills.charAt(i);
+			resultArr[teamMap.get(curr)]++;
+			result = Math.min(result, resultArr[teamMap.get(curr)]);
+		}
+
+		Arrays.sort(resultArr);
+
+		return result;
+	}
+	
+	public static int deleteProducts(List<Integer> ids, int m) {
+		// Write your code here
+		int result = 0;
+		Map<Integer, Integer> productMap = new HashMap<Integer, Integer>();
+		for (Integer id : ids) {
+			if (productMap.containsKey(id)) {
+				int idVal = productMap.get(id) + 1;
+				productMap.put(id, idVal);
+			} else {
+				productMap.put(id, 1);
+			}
+		}
+		int[] arr = new int[productMap.size()];
+		int i = 0;
+		for (Integer values : productMap.values()) {
+			arr[i] = values;
+			i++;
+		}
+		Arrays.sort(arr);
+		int j = 0;
+		result = arr.length;
+		for (j = 0; j < arr.length; j++) {
+			if (m < arr[j] && j == 0) {
+				result = arr.length;
+				break;
+			}
+			m = m - arr[j];
+			if (m < 0) {
+				break;
+			} else {
+				result--;
+			}
+		}
+		return result;
+	}
+
+	
+	
+}

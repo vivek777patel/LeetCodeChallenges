@@ -1,0 +1,111 @@
+package com.leetcode.challenge;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+
+public class NotLeetCode {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static String compute(String s) {
+		// Write your code here
+		TreeSet<String> subStringList = new TreeSet<>();
+		for (int i = 0; i < s.length(); i++) {
+			for (int j = i + 1; j <= s.length(); j++) {
+				subStringList.add(s.substring(i, j));
+			}
+		}
+
+		return subStringList.last();
+	}
+	
+	// Not a problem from leetcode
+	public static void nestedLogic(String actualS, String expectedS) {
+		String[] actual = actualS.split(" ");
+		String[] expected = expectedS.split(" ");
+
+		int d_a = Integer.parseInt(actual[0]);
+		int m_a = Integer.parseInt(actual[1]);
+		int y_a = Integer.parseInt(actual[2]);
+
+		int d_e = Integer.parseInt(expected[0]);
+		int m_e = Integer.parseInt(expected[1]);
+		int y_e = Integer.parseInt(expected[2]);
+
+		if (y_e - y_a < 0)
+			System.out.println(10000);
+		else if (m_e - m_a < 0 && y_a >= y_e)
+			System.out.println(500 * (m_e - m_a) * -1);
+		else if (d_e - d_a < 0 && y_a >= y_e && m_a >= m_e)
+			System.out.println(15 * (d_e - d_a) * -1);
+		else
+			System.out.println(0);
+	}
+	
+	public static int differentTeams(String skills) {
+
+		int result = 1;
+
+		if (skills.length() < 5) {
+			return result;
+		}
+		Map<Character, Integer> teamMap = new HashMap<Character, Integer>();
+		teamMap.put('p', 0);
+		teamMap.put('c', 1);
+		teamMap.put('m', 2);
+		teamMap.put('b', 3);
+		teamMap.put('z', 4);
+		int[] resultArr = { 0, 0, 0, 0, 0 };
+		for (int i = 0; i < skills.length(); i++) {
+			char curr = skills.charAt(i);
+			resultArr[teamMap.get(curr)]++;
+			result = Math.min(result, resultArr[teamMap.get(curr)]);
+		}
+
+		Arrays.sort(resultArr);
+
+		return result;
+	}
+
+	public static int deleteProducts(List<Integer> ids, int m) {
+		int result = 0;
+		Map<Integer, Integer> productMap = new HashMap<Integer, Integer>();
+		for (Integer id : ids) {
+			if (productMap.containsKey(id)) {
+				int idVal = productMap.get(id) + 1;
+				productMap.put(id, idVal);
+			} else {
+				productMap.put(id, 1);
+			}
+		}
+		int[] arr = new int[productMap.size()];
+		int i = 0;
+		for (Integer values : productMap.values()) {
+			arr[i] = values;
+			i++;
+		}
+		Arrays.sort(arr);
+		int j = 0;
+		result = arr.length;
+		for (j = 0; j < arr.length; j++) {
+			if (m < arr[j] && j == 0) {
+				result = arr.length;
+				break;
+			}
+			m = m - arr[j];
+			if (m < 0) {
+				break;
+			} else {
+				result--;
+			}
+		}
+		return result;
+	}
+	
+}

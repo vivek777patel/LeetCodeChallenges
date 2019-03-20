@@ -1,0 +1,1038 @@
+package com.mypractice.java;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
+
+class ArrayContainer implements Comparable<ArrayContainer>{
+	int[] arr;
+	int elementIndex;
+	public ArrayContainer(int[] arr, int elementIndex) {
+		this.arr = arr;
+		this.elementIndex = elementIndex;
+	}
+	
+	@Override
+	public int compareTo(ArrayContainer o) {
+		// TODO Auto-generated method stub
+		return this.arr[this.elementIndex]-o.arr[o.elementIndex];
+	}
+	
+}
+
+public class FrequentInterviewQuestions {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//System.out.println(medianArrayEqual(new Integer[] {1,2,3}, new Integer[]{7,17}));
+		
+		int val[] = new int[]{20, 30}; 
+	    int wt[] = new int[]{20, 51}; 
+	    int  W = 50; 
+	    int n = val.length; 
+	    //System.out.println(knapSack(W, wt, val, n));
+	    //System.out.println(knapSackRecursive(W, wt, val, n-1, new HashMap<>()));
+	    System.out.println(unboundedKnapsack(W, n, val, wt));
+	    System.out.println(knapsack(wt, val, 50, 0));
+	    
+		//System.out.println(findDuplicates1(new int[] {2,1,2,1,1,2}));
+	    //System.out.println(findDuplicates1(new int[] {20,21,22,22,22}));
+	    //findDupicate(new int[] {3,1,3,1,3,1});
+	    //findDuplicate1(new int[] {3,1,3,1,3,1});
+	    
+		/*int arr[] =  {1, 9, 3, 10, 4, 20, 2,15,14,13,12,11,21,17,22,16}; 
+        int n = arr.length; 
+        System.out.println("Length of the Longest consecutive subsequence is " + 
+                           findLongestConseqSubseq(arr,n));*/
+		/*int A[] = { 2, 5, 3, 7, 11, 8, 10, 13, 6 }; 
+        //System.out.println("Length of Longest Increasing Subsequence is " + longestIncreasingSubsequence(A));
+        //System.out.println(longestIncreasingSubsequenceLength(A));
+		System.out.println(lengthOfLIS(A));*/
+		
+	    //System.out.println(allSubArray(new int[] {1,2,-5,2,-1}));
+		//System.out.println(allSubArraySum(new int[] {1, 2, -5, 2, -1}));
+		
+	    //slidingWindowArray(new int[] {1, 2, 3, 2, 4, 1, 5, 6, 1, 7}, 3);
+		
+	    //System.out.println(Arrays.toString(zeroSum(new int[] {3, -1, -1, 2, -1, -4})));
+		
+	    /*System.out.println(squareSubMatrix(new int[][]{{0, 1, 1, 0, 1},  
+            {1, 1, 0, 1, 0},  
+            {0, 1, 1, 1, 1}, 
+            {1, 1, 1, 1, 1}, 
+            {1, 1, 1, 1, 1}, 
+            {0, 1, 1, 1, 1}}));*/
+		
+		/*int[] arr1 = { 0, 3, 5, 7 };
+		int[] arr2 = { 2, 4, 6, 8 };
+		int[] arr3 = { 0, 9, 10, 11 };
+//		int[] result = mergeKSortedArrays(new int[][] { arr1, arr2, arr3 });
+		int[] result = mergeKSortedArrays1(new int[][] { arr1, arr2, arr3 });
+		System.out.println(Arrays.toString(result));*/
+		
+		//System.out.println(binSearch(new int[] {0, 3, 5, 7}, 5));
+		
+	    /*int[] arr1 = { 1, 2, 3, 4 };
+		int[] arr2 = { 6, 7, 8 };
+		System.out.println(sortedMatrixSearch(new int[][] {arr1, arr2}, 5));*/
+		
+		// mergeTwoArrays(new int[] {1,3,5,0,0,0}, new int[] {2,4,6}, 3, 3);
+		
+	    //int a[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+		/*int a[] = { -2, -3, -1, -1, -2, -1, -5, -3 };
+		System.out.println(maxSumSubArray(a));*/
+		
+	    //System.out.println(Arrays.toString(subsetNoDuplicate(new int[] {1,2,3}).toArray()));
+		//printPowerSet(new int[] {1,2,3});
+		//System.out.println(Arrays.toString(generateAllParenthesis(3).toArray()));
+		//generateAllParenthesis1(3);
+		
+	    //System.out.println(squareCount(4,17));
+		
+	    //System.out.println(rLCount("RLRRLLRLRRLL")); -> 4 // RLRRLLRLRRLL
+		//System.out.println(rLCount("LLRLRLRLRLRLRR")); // -> 4 // RLLLRRRLLR
+		// LLRLRLRLRLRLRR -> 1
+		//int[] arr = {5,4,0,3,1,6,2};
+		/*int[] arr = {1,0,3,4,5,2,6};
+		System.out.println(maxNeckLace(arr));*/
+		
+		//System.out.println(findSmallestMissingPositive(new int[] {1,10,2,-10,-20}));
+		//System.out.println(findSmallestMissingPositive1(new int[] {0,10,2,-10,-20}));
+		//System.out.println(findSmallestMissingPositive2(new int[] {1,2,3}));
+		
+		//System.out.println(Arrays.toString(permutationString("abcd").toArray()));
+		
+		//System.out.println(Arrays.toString(permutationArray(new int[] {1,2,3}).toArray()));
+		//System.out.println(Arrays.toString(permute(new int[] {1,2,3}).toArray()));
+		
+		// Below two are same
+		//System.out.println(Arrays.toString(permutationArrayDuplicate(new int[] {1,1,3}).toArray()));
+		//System.out.println(Arrays.toString(permuteUnique(new int[] {1,1,3}).toArray()));
+	}
+	
+	// Needs sorting to check whether previous number is same as current or not O(n!)
+	public static List<List<Integer>> permuteUnique(int[] nums) {
+		List<List<Integer>> list = new ArrayList<>();
+		Arrays.sort(nums);
+		permuteUnique(list, new ArrayList<>(), nums, new boolean[nums.length]);
+		return list;
+	}
+
+	private static void permuteUnique(List<List<Integer>> list, List<Integer> tempList, int[] nums, boolean[] used) {
+		if (tempList.size() == nums.length) {
+			list.add(new ArrayList<>(tempList));
+		} else {
+			for (int i = 0; i < nums.length; i++) {
+				if (used[i] || i > 0 && nums[i] == nums[i - 1] && !used[i - 1])
+					continue;
+				used[i] = true;
+				tempList.add(nums[i]);
+				permuteUnique(list, tempList, nums, used);
+				used[i] = false;
+				tempList.remove(tempList.size() - 1);
+			}
+		}
+	}
+	
+	public static List<List<Integer>> permutationArrayDuplicate(int[] nums){
+		Set<List<Integer>> result = new HashSet<>();
+		permutationArrayBooleanDuplicate(nums, new ArrayList<Integer>(), result, new boolean[nums.length]);
+		return new ArrayList<>(result);
+	}
+	// Super slow then other method but its similar to the permutation without duplicate
+	public static void permutationArrayBooleanDuplicate(int[] nums, List<Integer> holder, 
+			Set<List<Integer>> result, boolean[] used) {
+		if(holder.size()==nums.length) {
+			result.add(new ArrayList<>(holder));
+			return;
+		}
+		for(int i=0; i<nums.length; i++) {
+			if(used[i]) continue;
+			used[i] = true;
+			holder.add(nums[i]);
+			permutationArrayBooleanDuplicate(nums, holder, result,used);
+			used[i] = false;
+			holder.remove(holder.size()-1);
+		}
+	}
+	
+	
+	public static List<List<Integer>> permute(int[] nums) {
+
+		List<List<Integer>> result = new ArrayList<>();
+
+		// start from an empty list
+		result.add(new ArrayList<Integer>());
+
+		for (int i = 0; i < nums.length; i++) {
+			// list of list in current iteration of the array num
+			List<List<Integer>> current = new ArrayList<>();
+
+			for (List<Integer> l : result) {
+				// # of locations to insert is largest index + 1
+				for (int j = 0; j < l.size() + 1; j++) {
+					// + add num[i] to different locations
+					l.add(j, nums[i]);
+
+					List<Integer> temp = new ArrayList<>(l);
+					current.add(temp);
+
+					// System.out.println(temp);
+
+					// - remove num[i] add
+					l.remove(j);
+				}
+			}
+
+			result = new ArrayList<>(current);
+		}
+
+		return result;
+
+	}
+	
+	public static List<List<Integer>> permutationArray(int[] nums){
+		List<List<Integer>> result = new ArrayList<>();
+		//permutationArray(nums, new ArrayList<Integer>(), result);
+		permutationArrayBoolean(nums, new ArrayList<Integer>(), result, new boolean[nums.length]);
+		return result;
+	}
+	// Super fast then other method
+	public static void permutationArrayBoolean(int[] nums, List<Integer> holder, List<List<Integer>> result, boolean[] used) {
+		if(holder.size()==nums.length) {
+			result.add(new ArrayList<>(holder));
+			return;
+		}
+		for(int i=0; i<nums.length; i++) {
+			if(used[i]) continue;
+			used[i] = true;
+			holder.add(nums[i]);
+			permutationArrayBoolean(nums, holder, result,used);
+			used[i] = false;
+			holder.remove(holder.size()-1);
+		}
+	}
+	public static void permutationArray(int[] nums, List<Integer> holder, List<List<Integer>> result) {
+		if(holder.size()==nums.length) {
+			result.add(new ArrayList<>(holder));
+			return;
+		}
+		for(int i=0; i<nums.length; i++) {
+			if(holder.contains(nums[i])) continue;
+			holder.add(nums[i]);
+			permutationArray(nums, holder, result);
+			holder.remove(holder.size()-1);
+		}
+	}
+	// O(n!)
+	public static List<String> permutationString(String str){
+		List<String> permutation = new ArrayList<>();
+		permutationString("", str, permutation);
+		return permutation;
+	}
+	
+	public static void permutationString(String prefix, String remaining, List<String> permutation) {
+		if(remaining.isEmpty()) {
+			permutation.add(prefix);
+			return;
+		}
+		for(int i=0; i<remaining.length(); i++) {
+			permutationString(prefix+remaining.charAt(i), // not considering ith character in remaining string
+					remaining.substring(0, i) + remaining.substring(i+1, remaining.length()), permutation);
+		}
+			
+	}
+	
+	public static int findSmallestMissingPositive2(int[] nums) {
+		int missing = nums.length + 1, countPositive = 0;
+
+		// with 0 just change > 0 to >= 0
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] > 0 && nums[i] <= missing) {
+				countPositive++;
+			}
+		}
+		// with 0 just change > 0 to >= 0
+		boolean[] flags = new boolean[countPositive + 1];
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] > 0 && nums[i] <= countPositive) {
+				flags[nums[i] - 1] = true; // change nums[i]-1 to nums[i]
+			}
+		}
+
+		for (int i = 0; i <= countPositive; i++) {
+			if (!flags[i])
+				return i + 1; // change i+1 to i
+		}
+		return 1;
+	}
+	
+	// with 1 (i.e. > 0)
+	// the idea is i+1 element is arr[i] ==> arr[i] = i+1
+	public static int findSmallestMissingPositive1(int[] arr) {
+		int n=arr.length;
+		for(int i=0;i<arr.length;i++) {
+			while(arr[i]!=i+1) {
+				if(arr[i]<=0 || arr[i]>=n)
+					break;
+				// just to check that in case of 0,10,2,-10,-20 --> 2 should be at 1st index
+				if(arr[i]==arr[arr[i]-1])
+					break;
+				int temp = arr[i];
+				arr[i] = arr[temp-1];
+				arr[temp-1] = temp;
+			}
+		}
+		for(int i=0;i<n;i++) {
+			if(arr[i]!=i+1) {
+				return i+1;
+			}
+		}
+		return n+1;
+	}
+	
+	// with 0
+	// The idea is ith element is arr[i] => arr[i]=i
+	public static int findSmallestMissingPositive(int[] arr) {
+		for(int i=0; i<arr.length;i++) {
+			while(arr[i]!=i) {
+				// No need to switch
+				if(arr[i]<0 || arr[i] >= arr.length)
+					break;
+				// when in switching the elements we get one of the element in place
+				if(arr[i]==i)
+					break;
+				int temp = arr[i];
+				arr[i] = arr[temp];
+				arr[temp] = arr[i];
+			}
+		}
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]!=i)
+				return i;
+		}
+		return arr.length;
+	}
+	/*public static int maxNeckLace(int[] arr) {
+		int result = 0;
+		List<Integer> res = new ArrayList<>();
+		List<List<Integer>> countList = new ArrayList<>();
+		maxNeckLace(arr, res, 0, new HashSet<Integer>(), countList);
+		for(List<Integer> i: countList) {
+			System.out.println(Arrays.toString(i.toArray()));
+			result = Math.max(result, i.size());
+		}
+		return result;
+	}
+	public static void maxNeckLace(int[] arr, List<Integer> res, int index, HashSet<Integer> track, List<List<Integer>> countList) {
+		if(track.contains(index) || arr.length==index) {
+			countList.add(new ArrayList<>(res));
+			res = new ArrayList<>();
+			return;
+		}
+		if(index!=arr[index]) {
+			res.add(arr[index]);
+			track.add(index);
+			maxNeckLace(arr, res, arr[index], track, countList);
+		}
+		else {
+			track.add(index);
+			maxNeckLace(arr, res, index+1, track, countList);
+		}
+		if(track.size()<arr.length) {
+			res = new ArrayList<>();
+			maxNeckLace(arr, res, index+1, track, countList);
+		}
+	}*/
+	
+	public static int squareCount1(int a, int b) {
+		return (int)(Math.floor(Math.sqrt(b)) - Math.ceil(Math.sqrt(a)) + 1);
+	}
+	
+	public static int squareCount(int A, int B) {
+		int count = 0;
+        int min = Math.min(A,B);
+        int max = Math.max(A,B);
+        int halfMax = max/2;
+        int halfMin = min/2;
+        for(int i=min; i<=max; i++){
+            for(int j=halfMin; j<halfMax; j++){
+                int val = (int)Math.pow(j,2);
+                if(val==i)
+                    count++;
+            }
+        }
+        return count;
+	}
+	public static boolean isValidParan(String str) {
+		int count=0;
+		for(int i=0;i<str.length();i++) {
+			char c = str.charAt(i);
+			if(c == '(') count++;
+			else if(c == ')') count--;
+			if(count<0) return false;
+		}
+		return count==0;
+	}
+	// Brute force approach -- Checking all possibilities and when string reaches maxlength we check whether its valid or not
+	public static void generateAllParenthesis1(int max) {
+		List<String> result = new ArrayList<>();
+		generateAllParenthesis1(max, result, "");
+		System.out.println(Arrays.toString(result.toArray()));
+	}
+	public static void generateAllParenthesis1(int max, List<String> result, String paran) {
+		if(paran.length()==2*max) {
+			if(isValidParan(paran))
+				result.add(paran);
+			return;
+		}
+		generateAllParenthesis1(max, result, paran+"(");
+		generateAllParenthesis1(max, result, paran+")");
+	}
+	public static List<String> generateAllParenthesis(int numPairs) {
+		List<String> result = new ArrayList<>();
+		generateAllParenthesis(numPairs, numPairs, "", result);
+		return result;
+	}
+	
+	public static void generateAllParenthesis(int leftParan, int rightParan, String paran, List<String> result) {
+		if(leftParan == 0 && rightParan == 0) {
+			result.add(paran);
+			return;
+		}
+		if(leftParan > 0)
+			generateAllParenthesis(leftParan-1, rightParan, paran+"(", result);
+		if(leftParan<rightParan)
+			generateAllParenthesis(leftParan, rightParan-1, paran+")", result);
+	}
+	// Using bitwise operators // O(n * 2^n)
+	public static void printPowerSet(int[] set) {
+
+		/*
+		 * set_size of power set of a set with set_size n is (2**n -1)
+		 */
+		long pow_set_size = (long) Math.pow(2, set.length);
+		int counter, j;
+
+		/*
+		 * Run from counter 000..0 to 111..1
+		 */
+		for (counter = 0; counter < pow_set_size; counter++) {
+			for (j = 0; j < set.length; j++) {
+				/*
+				 * Check if jth bit in the counter is set If set then print jth element from set
+				 */
+				if ((counter & (1 << j)) > 0)
+					System.out.print(set[j]);
+			}
+
+			System.out.println();
+		}
+	}
+	
+	public static List<List<Integer>> subsetNoDuplicate(int[] arr){
+		List<List<Integer>> result = new ArrayList<>();
+		Arrays.sort(arr);
+		subsetNoDuplicate(result, new ArrayList<Integer>(), arr, 0);
+		return result;
+	}
+	public static void subsetNoDuplicate(List<List<Integer>> result, List<Integer> holder, int[] arr, int start) {
+		result.add(new ArrayList<>(holder));
+		for(int i=start; i<arr.length; i++) {
+			holder.add(arr[i]);
+			subsetNoDuplicate(result, holder, arr, i+1);
+			holder.remove(holder.size()-1);
+		}
+	}
+	public static int maxSumSubArray(int[] arr) {
+		int maxSum = arr[0];
+		int currSum = arr[0];
+		int start=0, s=0, end=0;
+		for(int i=1;i<arr.length;i++) {
+			/* One way-- but difficult to find start and end index // But it also considers -ve numbers
+			 * 
+			 */
+			/*currSum = Math.max(arr[i], currSum+arr[i]); 
+			maxSum = Math.max(maxSum, currSum);*/
+			
+			/* Below solution wont work with -ve numbers
+			currSum += arr[i];
+			if(currSum < 0) {
+				currSum = 0;
+				s = i+1;
+			}
+			if(maxSum < currSum) {
+				maxSum = currSum;
+				start = s;
+				end = i;
+			}*/
+			
+			// When all the elements are -ve
+			// if startIndex and endIndex are equal then all the elements are -ve in array
+			// When currSum+arr[i]< arr[i] that means previous element was big -ve number which we added
+			if(arr[i] < currSum+arr[i]) {
+				currSum = currSum+arr[i];
+			}
+			else {
+				currSum = arr[i];
+				s = i;
+			}
+			
+			if(maxSum < currSum) {
+				maxSum = currSum;
+				start = s;
+				end = i;
+			}
+		}
+		System.out.println("Start Index : "+start+" End Index : "+end);
+		return maxSum;
+	}
+
+	// When A is long enough to hold all the elements of b
+	public static void mergeTwoArrays(int[] a, int[] b, int aLen, int bLen) {
+		if( aLen + bLen > a.length)
+			return;
+		// Will start from reverse order
+		int aIndex = aLen-1;
+		int bIndex = bLen-1;
+		int arrIndex = a.length-1; // or aLen+bLen-1
+		while(aIndex >= 0 && bIndex >= 0) {
+			if(a[aIndex]>b[bIndex]) {
+				a[arrIndex--] = a[aIndex--];
+			}
+			else {
+				a[arrIndex--] = b[bIndex--];
+			}
+		}
+		// for cases like mergeTwoArrays(new int[] {7,0,0,0}, new int[] {2,4,6}, 1, 3);
+		// here value of bIndex will be >= 0 after first while loop
+		while(bIndex >= 0) {
+			a[arrIndex--] = b[bIndex--];
+		}
+		System.out.println(Arrays.toString(a));
+	}
+	
+	// O(n log(m)) -- n-> no. of rows m-> no. of columns
+	public static boolean sortedMatrixSearch(int[][] matrix,  int x) {
+		
+		for(int row=0; row<matrix.length; row++) {
+			int col = matrix[row].length-1;
+			if(matrix[row][col] == x)
+				return true;
+			if(matrix[row][col] < x)
+				continue;
+			else
+				return binSearch(matrix[row], x);
+		}
+		return false;
+	}
+	
+	public static boolean binSearch(int[] mat, int x) {
+		int l=0;
+		int r=mat.length-1;
+		while(l<=r) {
+			int mid = l + (r-l)/2; // To get rid of overflow problem --> technically its equivalent to (l+r)/2
+			if(mat[mid] == x)
+				return true;
+			else if(mat[mid] < x)
+				l = mid+1;
+			else
+				r = mid-1;
+		}
+		return false;
+	}
+	public static int[] mergeKSortedArrays1(int[][] arr) {
+		int[] result = new int[arr.length*arr[0].length];
+		PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				// TODO Auto-generated method stub
+				return o1 - o2;
+			}
+		});
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[0].length;j++) {
+				pq.offer(arr[i][j]);
+			}
+		}
+		int i=0;
+		while(!pq.isEmpty()) {
+			result[i++] = pq.poll();
+		}
+		
+		return result;
+	}
+	public static int[] mergeKSortedArrays(int[][] arr) {
+		int mergedSize = 0;
+		//PriorityQueue<Integer> pq1 = new PriorityQueue<>((a,b)->a-b);
+		PriorityQueue<ArrayContainer> pq = new PriorityQueue<>();
+		// Calculate size of final merged array and add all the 0th elements of all arrays 
+		for(int i=0;i<arr.length;i++) {
+			mergedSize += arr[i].length;
+			pq.offer(new ArrayContainer(arr[i], 0));
+		}
+		
+		int[] result = new int[mergedSize];
+		int mergedIndex=0;
+		while(!pq.isEmpty()) {
+			ArrayContainer ac = pq.poll();
+			result[mergedIndex++] = ac.arr[ac.elementIndex];
+			// Check for current array's index is less than its length -- then we increment the index
+			if(ac.elementIndex < ac.arr.length-1) {
+				pq.offer(new ArrayContainer(ac.arr, ac.elementIndex+1));
+			}
+		}
+		return result;
+	}
+	
+	// Use cache to find the previous max square matrix
+	public static int squareSubMatrix(int[][] arr) {
+		int max = Integer.MIN_VALUE;
+		int[][] cache = new int[arr.length][arr[0].length];
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[0].length;j++) {
+				if(i==0 || j==0)
+					cache[i][j] = arr[i][j]==1 ? 1 : 0;
+				else if(arr[i][j] == 1) {
+					cache[i][j] = Math.min(cache[i-1][j], Math.min(cache[i][j-1], cache[i-1][j-1])) + 1; // Add 1 because arr[i][j] = 1
+				}
+				max = Math.max(max, cache[i][j]);
+			}
+		}
+		return max;
+	}
+	
+	// Sum all elements of array, when we find a match to sum in previously stored result, we found a sub array with 0 sum
+	public static int[] zeroSum(int[] arr) {
+		HashMap<Integer, Integer> sums = new HashMap<Integer, Integer>();
+		int sum = 0;
+		for (int i = 0; i <= arr.length; i++) {
+			Integer oldIndex = sums.get(sum);
+			// The corner case when we add the last element to sum that makes sum 0
+			// THE ORIGINAL SOLUTION IS BELOW COMMENTED--> CHANGED WITH MY UPDATED SOLUTION 
+			/*if(oldIndex == null && i == arr.length)
+				return null;
+			else if(oldIndex == null) {
+				sums.put(sum, i);
+				sum += arr[i];
+			}
+			else {
+				return Arrays.copyOfRange(arr, oldIndex, i);
+			}*/
+			
+			if(oldIndex == null || i == 0){
+				sums.put(sum, i);
+				sum += arr[i];
+			}
+		}
+
+		return null;
+	}
+	// Find maximum in the block of K -- here k is 3
+	// slidingWindowArray(new int[] {1, 2, 3, 2, 4, 1, 5, 6, 1, 7}, 3); -- > 3 3 4 4 5 6 6 7 4
+	public static void slidingWindowArray(int[] arr, int k) {
+		for(int i=0;i<arr.length-k+1;i++) {
+			int max = arr[i];
+			for(int j=i;j<i+k;j++) {
+				if(arr[j]>max)
+					max=arr[j];
+			}
+			System.out.print(max+" ");
+		}
+	}
+	
+	// O(n) time calculation of AllSubArraySum
+	public static int allSubArraySum(int[] arr) {
+		int result = 0;
+		int n = arr.length;
+		// For ith index the number of occurrences are = (n-i)*(i+1)
+		// Contribution of each element in totalSum is arr[i]*(n-i)*(i+1)
+		for(int i=0; i<n; i++) {
+			result += arr[i]*(n-i)*(i+1);
+		}
+		return result;
+	}
+	
+	public static boolean allSubArray(int[] arr) {
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i;j<arr.length;j++) {
+				for (int k = i; k <= j; k++) { 
+					System.out.print(arr[k] + "\t");
+				}
+				System.out.println();
+			}
+		}
+		return false;
+	}
+	
+	public static void zeroMatrix(int[][] arr) {
+		// Check if there is any 1 in first row and column
+		boolean firstRow = false;
+		boolean firstColumn = false;
+		
+		// Set first row or column to 1 if there's any 1 in a row or column
+		// Also set boolean if there's any 1 in first row or first column
+		
+		for(int i=0; i<arr.length; i++) {
+			for(int j=0; j<arr[0].length; j++) {
+				if(i==0 && arr[i][j]==1)
+					firstRow = true;
+				if(j==0 && arr[i][j]==1)
+					firstColumn = true;
+				// Setting first row and first column to 1
+				if(arr[i][j]==1) {
+					arr[0][j] = 1;
+					arr[i][0] = 1;
+				}
+			}
+		}
+		// Now start matrix from 1 as we already set for first row (index 0)
+		for(int i=1; i<arr.length; i++) {
+			for(int j=1; j<arr[0].length; j++) {
+				if(arr[0][i] == 1 || arr[i][0] == 1)
+					arr[i][j] = 1;
+			}
+		}
+		
+		// now if firstRow is true set all the element to 1
+		if(firstRow){
+			for(int i=0; i<arr[0].length; i++) {
+				arr[0][i] = 1;
+			}
+		}
+		if(firstColumn) {
+			for(int i=0; i<arr.length; i++) {
+				arr[i][0] = 1;
+			}
+		}
+	}
+	
+	// Longest Increasing Subsequence
+	public static int lengthOfLIS(int[] nums) {
+		if (nums.length == 0) {
+			return 0;
+		}
+		int[] dp = new int[nums.length];
+		dp[0] = 1;
+		int maxans = 1;
+		for (int i = 1; i < dp.length; i++) {
+			int maxval = 0;
+			for (int j = 0; j < i; j++) {
+				if (nums[i] > nums[j]) {
+					maxval = Math.max(maxval, dp[j]);
+				}
+			}
+			dp[i] = maxval + 1;
+			maxans = Math.max(maxans, dp[i]);
+		}
+		return maxans;
+	}
+	
+	// O(n^2)
+	/*public static int longestIncreasingSubsequenceLength(int[] arr) {
+		if(arr.length<=0)
+			return 0;
+		int[] lis = new int[arr.length];
+		Arrays.fill(lis, 1);
+		int currMax = 1;
+		for(int i=1;i<arr.length;i++) {
+			for(int j=0;j<i;j++) {
+				// Longest Non-Decreasing Subsequence we just change if(arr[i]>=arr[j]) condition 
+				if(arr[i]>arr[j])
+					lis[i] = Math.max(lis[i], lis[j]+1);
+			}
+			currMax = Math.max(lis[i], currMax);
+		}
+		return currMax;
+			
+	}*/
+	
+	public static int getIndex(int[] lis, int r, int val) {
+		int l = -1;
+		while (r - l > 1) {
+			int mid = l + (r -l) / 2;
+			if (lis[mid] >= val)
+				r = mid;
+			else
+				l = mid;
+		}
+		return r;
+	}
+	
+	public static int longestIncreasingSubsequence(int[] arr) {
+		int len=1;
+		int[] lis = new int[arr.length];
+		lis[0] = arr[0];
+		for(int i=1;i<arr.length;i++) {
+			// 3 cases
+			// Case 1: arr[i] < lis[0] -- we replace lis[0] with arr[i]
+			if(arr[i] < lis[0])
+				lis[0] = arr[i];
+			// Case 2: arr[i] > lis[len-1] (i.e. last element in our lis array) we add new element to lis
+			else if(arr[i] > lis[len-1])
+				lis[len++] = arr[i];
+			// Case 3 : if arr[i] falls in between the first and last element we replace the corresponding element at index
+			else
+				lis[getIndex(lis, len, arr[i])] = arr[i];
+		}
+		return len;
+	}
+	
+	// Add arr values to a Set and check for value - 1 in set...if not present start counting sequence with another loop
+	public static int findLongestConseqSubseq(int arr[], int n) {
+		HashSet<Integer> S = new HashSet<Integer>();
+		int ans = 0;
+
+		// Hash all the array elements
+		for (int i = 0; i < n; i++)
+			S.add(arr[i]);
+
+		// check each possible sequence from the start
+		// then update optimal length
+		for (int i = 0; i < n; i++) {
+			// if current element is the starting
+			// element of a sequence
+			if (!S.contains(arr[i] - 1)) {
+				// Then check for next elements in the
+				// sequence
+				int j = arr[i];
+				int count=0;
+				while (S.contains(j)) {
+					j++;
+					count++;
+				}
+				// update optimal length if this length
+				// is more
+				/*if (ans < j - arr[i])
+					ans = j - arr[i];*/
+				
+				// Using Math.max function to get maximum value
+				ans = Math.max(ans, count);
+				
+			}
+		}
+		return ans;
+	}
+	
+	public static List<Integer> findDuplicates1(int[] arr){
+		Set<Integer> set = new HashSet<>();
+		Set<Integer> result = new HashSet<>();
+		for (int i = 0; i < arr.length; i++) {
+			if(!set.add(arr[i])) {
+				result.add(arr[i]);
+			}
+		}
+		return new ArrayList<>(result);
+	}
+	// where elements are 1<=x<=length of array
+	public static List<Integer> findDuplicates(int[] arr){
+		List<Integer> result = new ArrayList<>();
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[Math.abs(arr[i])] >= 0)
+				arr[Math.abs(arr[i])] = -arr[Math.abs(arr[i])];
+			else
+				result.add(Math.abs(arr[i]));
+		}
+		return result;
+	}
+	
+	// Finds all duplicates and does maintain order and does not use extra space
+	public static void findDuplicate1(int[] arr) {
+		int n=arr.length;
+		for(int i=0;i<n;i++) {
+			// To check repeatition
+			int index = arr[i]%n;
+			if(arr[index]>=n) {
+				// To check if its first time and print only once if there's more than two occurance of same number
+				if(arr[index]<2*n) {
+					System.out.print(index+"\t");
+				}
+			}
+			arr[index] += n;
+		}
+	}
+	// Finds all duplicates but doesnot maintain order
+	public static void findDupicate(int[] arr) {
+		int n = arr.length;
+		for (int i = 0; i < n; i++) 
+	    { 
+	        int index = arr[i] % n; 
+	        arr[index] += n; 
+	    } 
+	  
+	    // Now check which value exists more 
+	    // than once by dividing with the size 
+	    // of array 
+	    for (int i = 0; i < n; i++) 
+	    { 
+	        if ((arr[i]/n) > 1) 
+	            System.out.println(i +" "); 
+	    } 
+	}
+
+	// Budget shopping --> Twilio HackerRank question
+	public static int unboundedKnapsack(int W, int n, int[] val, int[] wt) {
+
+		// dp[i] is going to store maximum value 
+		// with knapsack capacity i. 
+		int dp[] = new int[W + 1];
+
+		// Fill dp[] using above recursive formula
+		for (int i = 0; i <= W; i++) {
+			for (int j = 0; j < n; j++) {
+				if (wt[j] <= i) {
+					dp[i] = Math.max(dp[i], dp[i - wt[j]] + val[j]);
+				}
+			}
+		}
+		return dp[W];
+	}
+
+	public static int knapsack(int[] weight, int[] val, int w, int itemNum) {
+		if (w == 0 || itemNum == weight.length) {
+			return 0;
+		}
+		if (weight[itemNum] > w)
+			return knapsack(weight, val, w, itemNum + 1);
+
+		int rMax = val[itemNum] + knapsack(weight, val, w - weight[itemNum], itemNum + 1);
+		int lMax = knapsack(weight, val, w, itemNum + 1);
+		return Math.max(rMax, lMax);
+	}
+	
+	public static int knapSackRecursive(int W, int w[], int val[], int n, Map<String, Integer> lookup) {
+		if(W < 0)
+			return Integer.MIN_VALUE;
+		if(n<0 || W==0)
+			return 0;
+		String key = W+"|"+n;
+		if(!lookup.containsKey(key)) {
+			int include = val[n] + knapSackRecursive(W - w[n], w, val, n-1, lookup);
+			int exclude = knapSackRecursive(W, w, val, n-1, lookup);
+			lookup.put(key, Math.max(include, exclude));
+		}
+		return lookup.get(key);
+	}
+	// Returns the maximum value that can be put in a knapsack of capacity W
+	public static int knapSack(int W, int wt[], int val[], int n) {
+		int i, w;
+		int K[][] = new int[n + 1][W + 1];
+
+		for (i = 0; i <= n; i++) {
+			for (w = 0; w <= W; w++) {
+				if (i == 0 || w == 0)
+					K[i][w] = 0;
+				else if (wt[i - 1] <= w)
+					K[i][w] = Math.max(val[i - 1] + K[i - 1][w - wt[i - 1]], K[i - 1][w]);
+				else
+					K[i][w] = K[i - 1][w];
+			}
+		}
+		
+		return K[n][W];
+	}
+	
+	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        if(m>n){
+            int temp = m; m = n; n = temp;
+            int[] tmp = nums1; nums1 = nums2; nums2 = tmp;
+        }
+        
+        int iMin = 0, iMax = m, halfLen = (m+n+1)/2;
+        while(iMin<=iMax){
+            int i = (iMin+iMax)/2; // i means the number of elements to be inserted from first array into first half
+            int j = halfLen - i; // j means the number of elements to be inserted from second array into first half
+            					// Rest of the elements are the part of second half
+            // nums2[j-1] is first half's second array's last element and nums1[i] is second half's first array's first element 
+            if(i<iMax && nums2[j-1] > nums1[i]){
+                iMin = i + 1;
+            }
+            else if(i > iMin && nums1[i-1] > nums2[j]){
+                iMax = i - 1;
+            }
+            else{
+                int maxLeft = 0;
+                if(i==0)    maxLeft = nums2[j-1];
+                else if(j==0)   maxLeft = nums1[i-1];
+                else    maxLeft = Math.max(nums1[i-1], nums2[j-1]);
+                
+                // For odd case
+                if((n+m)%2 == 1)
+                    return maxLeft;
+                
+                int minRight = 0;
+                if(i==m)    minRight = nums2[j];
+                else if(j==n)   minRight = nums1[i];
+                else    minRight = Math.min(nums1[i], nums2[j]);
+                
+                return (maxLeft + minRight)/2.0;
+            }
+        }
+        return 0.0;
+    }
+	
+	public static double medianArrayEqual(Integer[] nums1, Integer[] nums2) {
+		int n=nums1.length==nums2.length?nums1.length:(nums1.length+nums2.length)/2;
+		int count=0;
+		boolean odd = (nums1.length+nums2.length)%2!=0;
+		int i=0,j=0,k1=nums1.length,k2=nums2.length;
+		int m1=0,m2=0;
+		while(i<k1 && j<k2) {
+			if(nums1[i]<=nums2[j]) {
+				if(odd && count==n) {
+					return nums1[i];
+				}
+				if(count==n-1)
+					m1=nums1[i];
+				if(count==n)
+					m2=nums1[i];
+				count++;
+				i++;
+			}
+			else {
+				if(odd && count==n) {
+					return nums2[j];
+				}
+				if(count==n-1)
+					m1=nums2[j];
+				if(count==n)
+					m2=nums2[j];
+				count++;
+				j++;
+			}
+		}
+		while(i<k1) {
+			if(odd && count==n) {
+				return nums1[i];
+			}
+			if(count==n-1)
+				m1=nums1[i];
+			if(count==n)
+				m2=nums1[i];
+			count++;
+			i++;
+		}
+		while(j<k2) {
+			if(odd && count==n) {
+				return nums2[j];
+			}
+			if(count==n-1)
+				m1=nums2[j];
+			if(count==n)
+				m2=nums2[j];
+			j++;
+			count++;
+		}
+		System.out.println(m1+" : "+m2);
+		return (m1+m2)/2.0;
+	}
+}
